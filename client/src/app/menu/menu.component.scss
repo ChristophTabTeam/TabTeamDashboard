@@ -1,0 +1,50 @@
+@import '../../variables';
+
+.navigation {
+  height: 100vh;
+  width: max-content;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  background: #2f2f2f;
+  z-index: 1;
+}
+
+.nav__list {
+  font-size: 1.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  color: white;
+}
+
+.nav__list-item {
+  display: flex;
+  gap: 1em;
+  box-sizing: border-box;
+  padding: 0.5em 1.5em;
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+  transition-duration: $animation-speed;
+  &:hover {
+    color: $accent-color;
+    background: linear-gradient(90deg, transparent 35%, rgba(82,204,124,1) 200%);
+  }
+}
+
+.nav__list-item-icon {
+  height: 30px;
+  aspect-ratio: 1/1;
+  text-align: center;
+  font-size: 1.3em;
+}
+
+.nav__list-item-name {
+  text-align: left;
+  display: flex;
+  align-items: center;
+}

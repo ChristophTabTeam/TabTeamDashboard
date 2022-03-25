@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@import './variables';
+
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+body > * {
+  box-sizing: border-box;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
