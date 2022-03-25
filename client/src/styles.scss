@@ -5,6 +5,11 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
+  font-family: 'Roboto', sans-serif;
+  background: url(./img/Background-Website.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 body > * {
