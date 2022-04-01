@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -12,6 +13,8 @@ import { TasksComponent } from './tasks/tasks.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TicketsComponent } from './tickets/tickets.component';
+import { OutputPdfComponent } from './invoicing/output-pdf/output-pdf.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -23,11 +26,15 @@ import { TicketsComponent } from './tickets/tickets.component';
     ProjectsComponent,
     SettingsComponent,
     TicketsComponent,
+    OutputPdfComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: DashboardComponent },
       { path: 'tasks', component: TasksComponent },

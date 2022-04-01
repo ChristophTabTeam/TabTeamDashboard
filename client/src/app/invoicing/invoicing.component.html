@@ -1,1 +1,28 @@
-<p>invoicing works!</p>
+<div class="dashboard">
+  <div class="headline">
+    <h1>Rechnungen</h1>
+    <div class="headline__menu">
+
+    </div>
+  </div>
+</div>
+
+<form>
+  <select name="customer" >
+    <option *ngFor='let customer of customers'>
+      {{ customer.id }}
+    </option>
+  </select>
+  <select name="article" [(ngModel)]="selectedArt" (change)="onArtChange()">
+    <option *ngFor='let art of articles' [value]="art.id">
+      {{ art.id }}
+    </option>
+  </select>
+</form>
+
+<div>
+  <p>
+    Selected Article: <span *ngIf="article">{{ article.name }}</span><br/>
+    Article price: <span *ngIf="article">{{ article.price | currency }}</span>
+  </p>
+</div>
