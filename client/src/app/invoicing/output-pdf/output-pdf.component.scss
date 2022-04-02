@@ -1,0 +1,82 @@
+// Header
+
+p {
+  margin: 0;
+}
+
+.output__logo-container {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.output__logo {
+  background: url(../../../img/TabTeam.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 300px;
+  height: 100%;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.output__address-container {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 10em;
+}
+
+.output__own-address-line {
+  font-size: 0.9em;
+  border-bottom: 3px black solid;
+}
+
+.output__recipient-address {
+  font-size: 1.2em;
+}
+
+.output__infos {
+  display: grid;
+  grid-auto-flow: column;
+  padding: 3em 0;
+  box-sizing: border-box;
+  font-size: 1.2em;
+}
+
+.output__infos-left, .output__infos-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+// Footer
+
+.output__footer {
+  position: absolute;
+  bottom: 6em;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+.output__footer-p {
+  padding: 1em 0;
+}
+
+.output__footer-container {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.output__footer-column {
+
+}
+
+.output__footer-column-p {
+  margin: 0;
+}
+
+

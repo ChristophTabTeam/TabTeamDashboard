@@ -1,28 +1,80 @@
-<div class="dashboard">
+
   <div class="headline">
     <h1>Rechnungen</h1>
     <div class="headline__menu">
 
     </div>
   </div>
-</div>
 
-<form>
-  <select name="customer" >
-    <option *ngFor='let customer of customers'>
-      {{ customer.id }}
-    </option>
-  </select>
-  <select name="article" [(ngModel)]="selectedArt" (change)="onArtChange()">
-    <option *ngFor='let art of articles' [value]="art.id">
-      {{ art.id }}
-    </option>
-  </select>
-</form>
+<div class="invoicing-form-and-preview">
+  <div>
+    <form>
+      <p>Kunde Auswählen</p>
+      <select name="customer" [(ngModel)]="selectedCustomer" (change)="onCustChange()">
+        <option *ngFor='let customer of customers'>
+          {{ customer.id }}
+        </option>
+      </select>
+    </form>
 
-<div>
-  <p>
-    Selected Article: <span *ngIf="article">{{ article.name }}</span><br/>
-    Article price: <span *ngIf="article">{{ article.price | currency }}</span>
-  </p>
+    <form>
+      <select [(ngModel)]="artOrServ" name="artOrServSelect">
+        <option value="art">
+          Artikel
+        </option>
+        <option value="serv">
+          Dienstleistung
+        </option>
+      </select>
+      <div *ngIf="artOrServ">
+        <div *ngIf="artOrServ === 'serv'">
+          <p>Dienstleistung zur Rechnung Hinzufügen</p>
+          <select [(ngModel)]="selectedServ" (change)="onServChange()" name="serviceSelect">
+            <option *ngFor='let serv of serivces' [value]="serv.id">
+              {{ serv.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="artOrServ === 'art'">
+          <p>Artikel zur Rechnung Hinzufügen</p>
+          <select [(ngModel)]="selectedArt" (change)="onArtChange()" name="artSelect">
+            <option *ngFor='let art of articles' [value]="art.id">
+              {{ art.id }}
+            </option>
+          </select>
+        </div>
+        <label>
+          <span>Notiz anfügen</span>
+          <input type="text" name="serivceNote" [(ngModel)]="note"/>
+        </label>
+        <label>
+          <span>Anzahl</span>
+          <input type="number" step=".1" name="serviceAmount" [(ngModel)]="amount"/>
+        </label>
+        <label>
+          <input type="submit" (click)="onArtSubmit()" value="Artikel hinzufügen" *ngIf="artOrServ === 'art'"/>
+          <input type="submit" (click)="onServSubmit()" value="Artikel hinzufügen" *ngIf="artOrServ === 'serv'"/>
+        </label>
+        <div *ngIf="artOrServ === 'serv'">
+          <p>Bearbeiter auswählen</p>
+          <select [(ngModel)]="employee" name="selectEmployee">
+            <option *ngFor="let emp of employees">
+              {{ emp.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="preview">
+    <app-output-pdf #outputRef
+      [selectedCust]="selectedCustomer"
+      [selectedArt]="selectedArt"
+      [selectedServ]="selectedServ"
+      [amount]="amount"
+      [employee]="employee"
+      (onAddService)="addLine($event)"
+      (onAddArticle)="addLine($event)"
+    ></app-output-pdf>
+  </div>
 </div>

@@ -1,1 +1,90 @@
-<p>output-pdf works!</p>
+<header>
+  <div class="output__logo-container">
+    <div class="output__logo"></div>
+  </div>
+  <div class="output__address-container">
+    <div class="output__address">
+      <div class="output__own-address-line">TabTeam GbR, Ödwieser Weg 7, 84082 Laberweinting</div>
+      <p class="output__recipient-address" *ngIf="customer"> - </p>
+      <p class="output__recipient-address" *ngIf="customer"> - </p>
+      <p class="output__recipient-address" *ngIf="customer">{{customer.firstName}} {{customer.lastName}}</p>
+      <p class="output__recipient-address" *ngIf="customer">{{customer.companyName}}</p>
+      <p class="output__recipient-address" *ngIf="customer">{{customer.street}} {{customer.streetNumber}}</p>
+      <p class="output__recipient-address" *ngIf="customer">{{customer.zipCode}} {{customer.city}}</p>
+      <p class="output__recipient-address" *ngIf="customer"> - </p>
+      <p class="output__recipient-address" *ngIf="customer"> - </p>
+    </div>
+    <div class="output__infos">
+      <div class="output__infos-left">
+        <div class="output__infos-top">
+          <p class="output__infos-data bold">Tel.:</p>
+          <p class="output__infos-data bold">E-Mail:</p>
+          <p class="output__infos-data bold">Webseite:</p>
+        </div>
+        <div class="output__infos-bottom">
+          <p class="output__infos-data bold">Datum:</p>
+          <p class="output__infos-data bold">Erstellt:</p>
+          <p class="output__infos-data bold">Kundennummer:</p>
+          <p class="output__infos-data bold">Fälligkeitsdatum:</p>
+        </div>
+      </div>
+      <div class="output__infos-right">
+        <div class="output__infos-top">
+          <p class="output__infos-data">+49 1514 4621799</p>
+          <p class="output__infos-data">info@tabteam.media</p>
+          <p class="output__infos-data">https://tabteam.media</p>
+        </div>
+        <div class="output__infos-bottom">
+          <p class="output__infos-data">{{ currentDate }}</p>
+          <p class="output__infos-data">Christoph Labestin</p>
+          <p class="output__infos-data" *ngIf="!customer"> --- </p>
+          <p class="output__infos-data" *ngIf="customer"> {{customer.id}} </p>
+          <p class="output__infos-data"> {{ dueDate }} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <h2>Rechnung #900001</h2>
+  <table>
+    <tr>
+      <th>Pos.</th>
+      <th>Art. Nr.</th>
+      <th>Leistung</th>
+      <th *ngIf="employee">Bearbeiter</th>
+      <th>Satz</th>
+      <th>Anzahl</th>
+      <th>Preis</th>
+    </tr>
+
+  </table>
+</main>
+
+<footer class="output__footer">
+  <p class="output__footer-p">Es gelten die AGBs der TabTeam GbR</p>
+  <div class="output__footer-container">
+    <div class="output__footer-column">
+      <p class="output__footer-column-p">TabTeam GbR</p>
+      <p class="output__footer-column-p">Ödwieser Weg 7</p>
+      <p class="output__footer-column-p">84082 Laberweinting</p>
+    </div>
+    <div class="output__footer-column">
+      <p class="output__footer-column-p">Finanzamt Straubing</p>
+      <p class="output__footer-column-p">USt-ID-Nr.</p>
+      <p class="output__footer-column-p">DEXXXXXXXXXXXXXX</p>
+    </div>
+    <div class="output__footer-column">
+      <p class="output__footer-column-p">Gesellschafter</p>
+      <p class="output__footer-column-p">Alexander Diermeyer</p>
+      <p class="output__footer-column-p">Christoph Labestin</p>
+    </div>
+    <div class="output__footer-column">
+      <p class="output__footer-column-p">VR-Ostbayern-Mitte</p>
+      <p class="output__footer-column-p">BLZ 74369088</p>
+      <p class="output__footer-column-p">BIC GENODEF1GPF</p>
+      <p class="output__footer-column-p">DE59 1001 1001 2621 2001 67</p>
+    </div>
+  </div>
+</footer>

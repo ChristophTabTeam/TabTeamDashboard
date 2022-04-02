@@ -1,0 +1,22 @@
+@import '../../variables';
+
+.headline {
+  color: $font-color;
+}
+
+.invoicing-form-and-preview {
+  display: grid;
+  grid-auto-flow: column;
+  color: $font-color;
+}
+
+.preview {
+  background-color: $font-color;
+  width: 21cm;
+  height: 29.7cm;
+  position: relative;
+  font-size: 0.7em;
+  padding: 6em;
+  box-sizing: border-box;
+  color: black;
+}

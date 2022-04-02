@@ -15,6 +15,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { OutputPdfComponent } from './invoicing/output-pdf/output-pdf.component';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: DashboardComponent },
       { path: 'tasks', component: TasksComponent },
@@ -42,6 +44,7 @@ import { CommonModule } from '@angular/common';
       { path: 'tickets', component: TicketsComponent },
       { path: 'invoicing', component: InvoicingComponent },
       { path: 'settings', component: SettingsComponent },
+      { path: 'preview' , component: OutputPdfComponent},
     ])
   ],
   providers: [],
