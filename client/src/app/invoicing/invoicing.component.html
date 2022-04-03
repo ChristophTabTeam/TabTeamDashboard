@@ -1,99 +1,115 @@
 
-  <div class="headline">
-    <h1>Rechnungen</h1>
-    <div class="headline__menu">
+<div class="headline">
+  <h1>Rechnungen</h1>
+  <div class="headline__menu">
 
-    </div>
   </div>
+</div>
 
 <div class="invoicing-form-and-preview">
-  <div>
-    <form>
-      <p>Kunde Auswählen</p>
-      <select name="customer" [(ngModel)]="selectedCustomer" (change)="onCustChange()">
-        <option *ngFor='let customer of customers'>
+  <div class="invoice__forms">
+    <form class="invoice__form one">
+      <h2 class="invoice__headlines">Kunde Auswählen</h2>
+      <select name="customer" [(ngModel)]="selectedCustomer" (change)="onCustChange()" class="invoice__select-field">
+        <option *ngFor='let customer of customers' class="invoice__select-option">
           {{ customer.id }}
         </option>
       </select>
+      <button (click)="selectCustomer()" class="invoice__button">Kunde Hinzufügen</button>
     </form>
 
-    <form>
-      <select [(ngModel)]="artOrServ" name="artOrServSelect">
-        <option value="art">
+    <form *ngIf="selectedCustomer" class="invoice__form two">
+      <h2 class="invoice__headlines">Artikel oder Dienstleistung</h2>
+      <select [(ngModel)]="artOrServ" name="artOrServSelect" class="invoice__select-field w100p">
+        <option value="art" class="invoice__select-option">
           Artikel
         </option>
-        <option value="serv">
+        <option value="serv" class="invoice__select-option">
           Dienstleistung
         </option>
       </select>
-      <div *ngIf="artOrServ">
-        <div *ngIf="artOrServ === 'serv'">
-          <p>Dienstleistung zur Rechnung Hinzufügen</p>
-          <select [(ngModel)]="selectedServ" (change)="onServChange()" name="serviceSelect">
-            <option *ngFor='let serv of serivces' [value]="serv.id">
-              {{ serv.id }}
-            </option>
-          </select>
-        </div>
-        <div *ngIf="artOrServ === 'art'">
-          <p>Artikel zur Rechnung Hinzufügen</p>
-          <select [(ngModel)]="selectedArt" (change)="onArtChange()" name="artSelect">
-            <option *ngFor='let art of articles' [value]="art.id">
-              {{ art.id }}
-            </option>
-          </select>
-        </div>
-        <label>
-          <span>Notiz anfügen</span>
-          <input type="text" name="serivceNote" [(ngModel)]="note"/>
-        </label>
-        <label>
-          <span>Anzahl</span>
-          <input type="number" step=".1" name="serviceAmount" [(ngModel)]="amount"/>
-        </label>
-        <label>
-          <input type="submit" (click)="onArtSubmit()" value="Artikel hinzufügen" *ngIf="artOrServ === 'art'"/>
-          <input type="submit" (click)="onServSubmit()" value="Artikel hinzufügen" *ngIf="artOrServ === 'serv'"/>
-        </label>
-        <div *ngIf="artOrServ === 'serv'">
-          <p>Bearbeiter auswählen</p>
-          <select [(ngModel)]="employee" name="selectEmployee">
-            <option *ngFor="let emp of employees">
-              {{ emp.name }}
-            </option>
-          </select>
-        </div>
-      </div>
     </form>
-    <table *ngIf="lines">
-      <tr>
-        <th class="invoice__table-head">Pos</th>
-        <th class="invoice__table-head">Art. Nr.</th>
-        <th class="invoice__table-head">Leistung</th>
-        <th class="invoice__table-head">Bearbeiter</th>
-        <th class="invoice__table-head">Anzahl</th>
-      </tr>
-      <tr *ngFor="let line of lines">
-        <td class="invoice__table-data"> {{line.id}} </td>
-        <td class="invoice__table-data"> {{line.number}} </td>
-        <td class="invoice__table-data"> {{line.serviceName}} <br/> {{line.serviceNote}} </td>
-        <td class="invoice__table-data"> {{line.employee}} </td>
-        <td class="invoice__table-data"> {{line.amount}} </td>
-        <td class="invoice__table-data">
-          <button (click)="deleteLine(line)">X</button>
-        </td>
-      </tr>
-    </table>
+    <form  *ngIf="artOrServ" class=" three invoice__form vertical-flex">
+      <div *ngIf="artOrServ === 'serv'">
+          <h2 class="invoice__headlines">Dienstleistung hinzufügen</h2>
+          <label class="invoice__label">
+            <p class="invoice__form-name">Dienstleistung auswählen</p>
+            <select [(ngModel)]="selectedServ" (change)="onServChange()" name="serviceSelect" class="invoice__select-field w200">
+              <option *ngFor='let serv of serivces' [value]="serv.id" class="invoice__select-option">
+                {{ serv.id }}
+              </option>
+            </select>
+            <p *ngIf="service" class="invoice__form-name"> {{service.name}} </p>
+          </label>
+      </div>
+      <div *ngIf="artOrServ === 'art'">
+          <h2 class="invoice__headlines">Artikel hinzufügen</h2>
+          <label class="invoice__label">
+            <p class="invoice__form-name">Artikel auswählen</p>
+            <select [(ngModel)]="selectedArt" (change)="onArtChange()" name="artSelect" class="invoice__select-field w200">
+              <option *ngFor='let art of articles' [value]="art.id" class="invoice__select-option">
+                {{ art.id }}
+              </option>
+            </select>
+            <p *ngIf="article" class="invoice__form-name"> {{article.name}} </p>
+          </label>
+      </div>
+      <label class="invoice__label">
+          <span class="invoice__form-name">Notiz anfügen</span>
+          <input type="text" name="serivceNote" [(ngModel)]="note" class="invoice__input w100p"/>
+      </label>
+      <label class="invoice__label flex">
+          <span class="invoice__form-name">Anzahl</span>
+          <input type="number" step=".1" name="serviceAmount" [(ngModel)]="amount" class="invoice__input h25 asprat2-1"/>
+      </label>
+      <div *ngIf="artOrServ === 'serv'" class="invoice__label">
+        <span class="invoice__form-name">Bearbeiter auswählen</span>
+        <select [(ngModel)]="employee" name="selectEmployee" class="invoice__select-field w100p">
+          <option class="invoice__select-option">  </option>
+          <option *ngFor="let emp of employees" class="invoice__select-option">
+            {{ emp.name }}
+          </option>
+        </select>
+      </div>
+      <label class="invoice__label">
+          <input type="submit" (click)="onArtSubmit()" value="Artikel hinzufügen" *ngIf="artOrServ === 'art'" class="invoice__button w100p"/>
+          <input type="submit" (click)="onServSubmit()" value="Dienstleistung hinzufügen" *ngIf="artOrServ === 'serv'" class="invoice__button w100p margint1em"/>
+      </label>
+    </form>
+    <div class="invoice__form four overflowy-auto">
+      <h2 class="invoice__headlines">Aktive Positionen</h2>
+      <table *ngIf="lines" class="invoice__table">
+        <tr>
+          <th class="invoice__table-head">Pos</th>
+          <th class="invoice__table-head">Art. Nr.</th>
+          <th class="invoice__table-head">Leistung</th>
+          <th class="invoice__table-head">Bearbeiter</th>
+          <th class="invoice__table-head">Anzahl</th>
+        </tr>
+        <tr *ngFor="let line of lines">
+          <td class="invoice__table-data"> {{line.id}} </td>
+          <td class="invoice__table-data"> {{line.number}} </td>
+          <td class="invoice__table-data"> {{line.serviceName}} <br/> {{line.serviceNote}} </td>
+          <td class="invoice__table-data"> {{line.employee}} </td>
+          <td class="invoice__table-data"> {{line.amount}} </td>
+          <td class="invoice__table-data">
+            <button (click)="deleteLine(line)">X</button>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
+
   <div class="preview">
     <app-output-pdf #outputRef
       [selectedCust]="selectedCustomer"
-      [selectedArt]="selectedArt"
-      [selectedServ]="selectedServ"
+      [articleArray]="article"
+      [serviceArray]="service"
       [amount]="amount"
       [employee]="employee"
       [lines]="lines"
       [note]="note"
+      [nettoSum]="sumOfLinePrice"
       (onAddService)="addLine($event)"
       (onAddArticle)="addLine($event)"
     ></app-output-pdf>

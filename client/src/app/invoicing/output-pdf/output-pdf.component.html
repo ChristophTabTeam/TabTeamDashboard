@@ -4,15 +4,13 @@
   </div>
   <div class="output__address-container">
     <div class="output__address">
-      <div class="output__own-address-line">TabTeam GbR, Ödwieser Weg 7, 84082 Laberweinting</div>
-      <p class="output__recipient-address" *ngIf="customer"> - </p>
-      <p class="output__recipient-address" *ngIf="customer"> - </p>
-      <p class="output__recipient-address" *ngIf="customer">{{customer.firstName}} {{customer.lastName}}</p>
+      <div class="output__own-address-line">
+        <span class="output__own-address-line-content">TabTeam GbR, Ödwieser Weg 7, 84082 Laberweinting</span>
+      </div>
+      <p class="output__recipient-address top" *ngIf="customer">{{customer.firstName}} {{customer.lastName}}</p>
       <p class="output__recipient-address" *ngIf="customer">{{customer.companyName}}</p>
       <p class="output__recipient-address" *ngIf="customer">{{customer.street}} {{customer.streetNumber}}</p>
       <p class="output__recipient-address" *ngIf="customer">{{customer.zipCode}} {{customer.city}}</p>
-      <p class="output__recipient-address" *ngIf="customer"> - </p>
-      <p class="output__recipient-address" *ngIf="customer"> - </p>
     </div>
     <div class="output__infos">
       <div class="output__infos-left">
@@ -46,8 +44,10 @@
   </div>
 </header>
 
-<main>
-  <h2>Rechnung #900001</h2>
+<main class="output__textarea">
+  <span class="faltmarke faltmarke-oben"></span>
+  <span class="faltmarke faltmarke-unten"></span>
+  <h2 class="output__headline">Rechnung #900001</h2>
   <table class="output__table">
     <tr class="output__table-row">
       <th class="output__table-head">Pos.</th>
@@ -62,12 +62,26 @@
       <td class="output__table-data"> {{line.id}} </td>
       <td class="output__table-data"> {{line.number}} </td>
       <td class="output__table-data"> {{line.serviceName}} <br/> {{line.serviceNote}} </td>
-      <td class="output__table-data"> {{line.employee}} </td>
-      <td class="output__table-data"> {{line.servicePrice | currency}} </td>
+      <td class="output__table-data" *ngIf="employee"> {{line.employee}} </td>
+      <td class="output__table-data"> {{line.servicePrice | number:'1.2-2'}} €/h </td>
       <td class="output__table-data"> {{line.amount}} </td>
-      <td class="output__table-data"> {{line.servicePrice | currency}} </td>
+      <td class="output__table-data"> {{line.linePrice | number: '1.2-2'}} € </td>
     </tr>
   </table>
+  <div class="output__sum-container">
+    <div class="output__sum">
+      <div class="output__sum-left">
+        <p class="output__text bold">Summe (Netto)</p>
+        <p class="output__text bold">MwSt (19 %)</p>
+        <p class="output__text bold">Gesamtsumme</p>
+      </div>
+      <div class="output__sum-right">
+        <p class="output__text" *ngIf="nettoSum"> {{nettoSum | number: '1.2-2'}} € </p>
+        <p class="output__text" *ngIf="nettoSum"> {{nettoSum * 0.19 | number: '1.2-2'}} € </p>
+        <p class="output__text" *ngIf="nettoSum"> {{nettoSum * 1.19 | number: '1.2-2'}} € </p>
+      </div>
+    </div>
+  </div>
 </main>
 
 <footer class="output__footer">

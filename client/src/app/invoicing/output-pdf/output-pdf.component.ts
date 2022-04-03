@@ -26,6 +26,7 @@ export class OutputPdfComponent implements OnInit {
   servicePrice: number
   @Input() amount: number
   totalLinePrice: number
+  @Input() nettoSum: number
 
   currentDate: string
   dueDate: string
@@ -34,9 +35,9 @@ export class OutputPdfComponent implements OnInit {
   article?: Article
   service?: Service
 
-  @Input() selectedCust: number = 800001
-  @Input() selectedArt: number = 10001
-  @Input() selectedServ: number = 20002
+  @Input() selectedCust: number
+  @Input() articleArray?: Article
+  @Input() serviceArray?: Service
   @Input() lines: InvoiceLine[]
 
   constructor() { }
@@ -63,20 +64,21 @@ export class OutputPdfComponent implements OnInit {
   }
 
   onServSubmit() {
-    if(!this.selectedServ) {
+    if(!this.serviceArray) {
       alert('Bitte eine Dienstleistung oder einen Artikel auswählen')
     }
 
     this.pos = this.pos + 1
-    if (this.service) {
+    if (this.serviceArray) {
       const newLine = {
         id: this.pos,
-        number: this.service.id,
-        serviceName: this.service.name,
+        number: this.serviceArray.id,
+        serviceName: this.serviceArray.name,
         serviceNote: this.note,
         employee: this.employee,
-        servicePrice: this.service.price,
-        amount: this.amount
+        servicePrice: this.serviceArray.price,
+        amount: this.amount,
+        linePrice: this.serviceArray.price * this.amount
       }
 
       this.onAddService.emit(newLine)
@@ -84,38 +86,28 @@ export class OutputPdfComponent implements OnInit {
   }
 
   onArtSubmit() {
-    if(!this.selectedArt) {
+    if(!this.articleArray) {
       alert('Bitte eine Dienstleistung oder einen Artikel auswählen')
     }
 
     this.pos = this.pos + 1
 
-    if (this.article) {
+    if (this.articleArray) {
       const newLine = {
         id: this.pos,
-        number: this.article.id,
-        serviceName: this.article.name,
+        number: this.articleArray.id,
+        serviceName: this.articleArray.name,
         serviceNote: this.note,
-        employee: this.employee,
-        servicePrice: this.article.price,
-        amount: this.amount
+        servicePrice: this.articleArray.price,
+        amount: this.amount,
+        linePrice: this.articleArray.price * this.amount
       }
       this.onAddArticle.emit(newLine)
     }
   }
 
-  onCustChange() {
+  selectCustomer() {
     this.customer = customers.find(customer => customer.id == this.selectedCust)
     console.log(this.customer)
-  }
-
-  onServChange() {
-    this.service = services.find(service => service.id == this.selectedServ)
-    console.log(this.service)
-  }
-
-  onArtChange() {
-    this.article = articles.find(article => article.id == this.selectedArt)
-    console.log(this.article)
   }
 }

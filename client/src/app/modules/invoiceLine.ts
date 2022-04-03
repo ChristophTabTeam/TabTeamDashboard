@@ -5,5 +5,6 @@ export interface InvoiceLine {
   serviceNote: string,
   employee?: string,
   servicePrice: number,
-  amount: number
+  amount: number,
+  linePrice: number
 }

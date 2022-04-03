@@ -4,9 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Article, articles } from '../modules/articles'
 import { Service, services } from '../modules/services';
 import { OutputPdfComponent } from './output-pdf/output-pdf.component';
-import { FormBuilder, FormControl } from '@angular/forms';
 import { InvoiceLine } from '../modules/invoiceLine';
-import { Observable } from 'rxjs';
 import { InvoiceService } from '../services/invoice.service';
 
 @Component({
@@ -21,32 +19,40 @@ export class InvoicingComponent implements OnInit {
   serivces = services
   customers = customers
   employees = employees
-  lines: InvoiceLine[] = []
+
 
   customer?: Customer
-  selectedCustomer: number = 800001
+  selectedCustomer: number
 
   artOrServ: string
-
+  lines: InvoiceLine[] = []
+  sumOfLinePrice: number
   article?: Article
   service?: Service
-  selectedArt: number = 10001
-  selectedServ: number = 20001
+  selectedArt: number
+  selectedServ: number
   note: string
   amount: number
   employee: string
+  nettoSum: number = 0
 
   constructor(
-    private formBuilder: FormBuilder,
     private invoiceService: InvoiceService,
   ) { }
 
   ngOnInit(): void {
     this.invoiceService.getLines().subscribe((lines) => (this.lines = lines))
+    this.lines.forEach((l) => {
+      this.sumOfLinePrice = this.sumOfLinePrice + l.servicePrice
+    })
   }
 
   onArtSubmit() {
     this.outputRef.onArtSubmit()
+  }
+
+  test() {
+    console.log(this.sumOfLinePrice)
   }
 
   onServSubmit() {
@@ -55,21 +61,31 @@ export class InvoicingComponent implements OnInit {
 
   addLine(line: InvoiceLine) {
     this.invoiceService.addLine(line).subscribe((line) => (this.lines.push(line)))
+    this.lines.forEach((line) => {
+      line.linePrice
+    })
   }
 
   deleteLine(line: InvoiceLine) {
     this.invoiceService.deleteLine(line).subscribe(() => (this.lines = this.lines.filter(l => l.id !== line.id)))
   }
 
-  onArtChange(): void {
-    this.outputRef.onArtChange()
-  }
-
-  onServChange(): void {
-    this.outputRef.onServChange()
+  selectCustomer() {
+    this.outputRef.selectCustomer()
   }
 
   onCustChange() {
-    this.outputRef.onCustChange()
+    this.customer = customers.find(customer => customer.id == this.selectedCustomer)
+    console.log(this.customer)
+  }
+
+  onServChange() {
+    this.service = services.find(service => service.id == this.selectedServ)
+    console.log(this.service)
+  }
+
+  onArtChange() {
+    this.article = articles.find(article => article.id == this.selectedArt)
+    console.log(this.article)
   }
 }

@@ -1,5 +1,47 @@
 {
   "invLines": [
-
+    {
+      "id": 1,
+      "number": 20002,
+      "serviceName": "Teamleiter Stundensatz",
+      "serviceNote": "Test Line",
+      "employee": "Alexander Diermeyer",
+      "servicePrice": 80,
+      "amount": 0.5,
+      "linePrice": 40
+    },
+    {
+      "id": 2,
+      "number": 20002,
+      "serviceName": "Teamleiter Stundensatz",
+      "serviceNote": "Test Line",
+      "employee": "Alexander Diermeyer",
+      "servicePrice": 80,
+      "amount": 0.5,
+      "linePrice": 40
+    },
+    {
+      "id": 3,
+      "number": 20004,
+      "serviceName": "Azubi Stundensatz",
+      "serviceNote": "Test Line",
+      "employee": "Mikail Delier",
+      "servicePrice": 60,
+      "amount": 0.7,
+      "linePrice": 42
+    },
+    {
+      "id": 4,
+      "number": 20003,
+      "serviceName": "Mitarbeiter Stundensatz",
+      "serviceNote": "Test Line",
+      "employee": "Alexander Diermeyer",
+      "servicePrice": 70,
+      "amount": 0.3,
+      "linePrice": 21
+    }
+  ],
+  "sums": [
+    {}
   ]
 }

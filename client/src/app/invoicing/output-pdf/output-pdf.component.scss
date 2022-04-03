@@ -5,10 +5,14 @@ p {
 }
 
 .output__logo-container {
-  width: 100%;
-  height: 80px;
+  width: 19cm;
+  height: 40mm;
   display: flex;
   justify-content: flex-end;
+  align-items: flex-end;
+  position: absolute;
+  left: 0;
+  top: 15mm;
 }
 
 .output__logo {
@@ -24,43 +28,71 @@ p {
   font-weight: 600;
 }
 
+.top {
+  margin-top: 24pt;
+}
+
 .output__address-container {
   display: grid;
   grid-auto-flow: column;
-  gap: 10em;
+  gap: 2cm;
+}
+
+.output__address {
+  padding: 0 0 0 5mm;
+  box-sizing: border-box;
+  width: 85mm;
+  height: 45mm;
 }
 
 .output__own-address-line {
-  font-size: 0.9em;
+  font-size: 7pt;
+  height: 7.7mm;
+  vertical-align: bottom;
+  display: flex;
+  align-items: flex-end;
+}
+
+.output__own-address-line-content {
   border-bottom: 3px black solid;
+  padding: 0.1em 0.5em 0 0;
 }
 
 .output__recipient-address {
-  font-size: 1.2em;
+  font-size: 11pt;
 }
 
 .output__infos {
   display: grid;
   grid-auto-flow: column;
-  padding: 3em 0;
+  padding: 0;
   box-sizing: border-box;
-  font-size: 1.2em;
+  font-size: 10pt;
+  margin-top: 5mm;
+  height: 40mm;
+  width: 75mm;
 }
 
 .output__infos-left, .output__infos-right {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+  justify-content: flex-end;
 }
 
 // Main
 
-.output__table {
-  width: 100%;
+.output__textarea {
+  padding: 8.46mm 10mm 0 5mm;
+  font-size: 10pt;
 }
 
-.output__table-row {
+.output__headline {
+  margin: 0;
+}
 
+.output__table {
+  width: 100%;
 }
 
 .output__table-head {
@@ -70,7 +102,31 @@ p {
 
 .output__table-data {
   text-align: left;
-  padding: 1em;
+  padding: 0.5em;
+  vertical-align: baseline;
+}
+
+.output__sum-container {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.output__sum {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 2em;
+}
+
+.output__sum-left, .output__sum-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+.output__sum-right {
+  text-align: right;
 }
 
 // Footer
@@ -81,7 +137,8 @@ p {
   left: 0;
   width: 100%;
   box-sizing: border-box;
-  padding: 6em;
+  padding: 0 20mm 10mm 25mm;
+  font-size: 9pt;
 }
 
 .output__footer-p {
@@ -91,10 +148,6 @@ p {
 .output__footer-container {
   display: grid;
   grid-auto-flow: column;
-}
-
-.output__footer-column {
-
 }
 
 .output__footer-column-p {

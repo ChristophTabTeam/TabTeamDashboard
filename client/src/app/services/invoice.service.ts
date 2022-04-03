@@ -17,6 +17,9 @@ const httpOptions = {
 export class InvoiceService {
   private apiUrl = 'http://localhost:5000/invLines'
 
+  linePrice: number
+  nettoSum: number = 0
+
   constructor(
     private http: HttpClient,
   ) { }
@@ -30,8 +33,12 @@ export class InvoiceService {
   }
 
   addLine(line: InvoiceLine): Observable<InvoiceLine> {
+    this.linePrice = line.servicePrice * line.amount
+    this.nettoSum = this.nettoSum + this.linePrice
     return this.http.post<InvoiceLine>(this.apiUrl, line, httpOptions)
   }
+
+
 
   getLines(): Observable<InvoiceLine[]> {
     return this.http.get<InvoiceLine[]>(this.apiUrl)
