@@ -1,7 +1,8 @@
 export interface InvoiceLine {
-  position: number,
+  id: number,
   number: number,
   serviceName: string,
+  serviceNote: string,
   employee?: string,
   servicePrice: number,
   amount: number

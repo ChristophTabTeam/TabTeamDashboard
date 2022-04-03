@@ -4,7 +4,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Article, articles } from '../modules/articles'
 import { Service, services } from '../modules/services';
 import { OutputPdfComponent } from './output-pdf/output-pdf.component';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { FormBuilder, FormControl } from '@angular/forms';
 import { InvoiceLine } from '../modules/invoiceLine';
 import { Observable } from 'rxjs';
@@ -31,20 +30,19 @@ export class InvoicingComponent implements OnInit {
 
   article?: Article
   service?: Service
-  selectedArt: number
-  selectedServ: number
+  selectedArt: number = 10001
+  selectedServ: number = 20001
   note: string
   amount: number
   employee: string
 
   constructor(
-    private http: HttpClient,
     private formBuilder: FormBuilder,
     private invoiceService: InvoiceService,
   ) { }
 
   ngOnInit(): void {
-
+    this.invoiceService.getLines().subscribe((lines) => (this.lines = lines))
   }
 
   onArtSubmit() {
@@ -59,8 +57,8 @@ export class InvoicingComponent implements OnInit {
     this.invoiceService.addLine(line).subscribe((line) => (this.lines.push(line)))
   }
 
-  test() {
-    console.log(this.artOrServ)
+  deleteLine(line: InvoiceLine) {
+    this.invoiceService.deleteLine(line).subscribe(() => (this.lines = this.lines.filter(l => l.id !== line.id)))
   }
 
   onArtChange(): void {

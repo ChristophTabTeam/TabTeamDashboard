@@ -65,6 +65,25 @@
         </div>
       </div>
     </form>
+    <table *ngIf="lines">
+      <tr>
+        <th class="invoice__table-head">Pos</th>
+        <th class="invoice__table-head">Art. Nr.</th>
+        <th class="invoice__table-head">Leistung</th>
+        <th class="invoice__table-head">Bearbeiter</th>
+        <th class="invoice__table-head">Anzahl</th>
+      </tr>
+      <tr *ngFor="let line of lines">
+        <td class="invoice__table-data"> {{line.id}} </td>
+        <td class="invoice__table-data"> {{line.number}} </td>
+        <td class="invoice__table-data"> {{line.serviceName}} <br/> {{line.serviceNote}} </td>
+        <td class="invoice__table-data"> {{line.employee}} </td>
+        <td class="invoice__table-data"> {{line.amount}} </td>
+        <td class="invoice__table-data">
+          <button (click)="deleteLine(line)">X</button>
+        </td>
+      </tr>
+    </table>
   </div>
   <div class="preview">
     <app-output-pdf #outputRef
@@ -73,6 +92,8 @@
       [selectedServ]="selectedServ"
       [amount]="amount"
       [employee]="employee"
+      [lines]="lines"
+      [note]="note"
       (onAddService)="addLine($event)"
       (onAddArticle)="addLine($event)"
     ></app-output-pdf>

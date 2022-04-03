@@ -32,4 +32,13 @@ export class InvoiceService {
   addLine(line: InvoiceLine): Observable<InvoiceLine> {
     return this.http.post<InvoiceLine>(this.apiUrl, line, httpOptions)
   }
+
+  getLines(): Observable<InvoiceLine[]> {
+    return this.http.get<InvoiceLine[]>(this.apiUrl)
+  }
+
+  deleteLine(line: InvoiceLine): Observable<InvoiceLine> {
+    const url = `${this.apiUrl}/${line.id}`
+    return this.http.delete<InvoiceLine>(url)
+  }
 }

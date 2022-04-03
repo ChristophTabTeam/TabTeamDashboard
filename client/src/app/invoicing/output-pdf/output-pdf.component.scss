@@ -53,13 +53,35 @@ p {
   gap: 0.5em;
 }
 
+// Main
+
+.output__table {
+  width: 100%;
+}
+
+.output__table-row {
+
+}
+
+.output__table-head {
+  text-align: left;
+  padding: 0.5em;
+}
+
+.output__table-data {
+  text-align: left;
+  padding: 1em;
+}
+
 // Footer
 
 .output__footer {
   position: absolute;
-  bottom: 6em;
-  width: 90%;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   box-sizing: border-box;
+  padding: 6em;
 }
 
 .output__footer-p {

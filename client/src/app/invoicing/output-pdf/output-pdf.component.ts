@@ -18,8 +18,10 @@ export class OutputPdfComponent implements OnInit {
   customers = customers
 
   pos: number = 0
+  id: number = 0
   artNumber: number
   serviceName: string
+  @Input() note: string
   @Input() employee: string
   servicePrice: number
   @Input() amount: number
@@ -35,6 +37,7 @@ export class OutputPdfComponent implements OnInit {
   @Input() selectedCust: number = 800001
   @Input() selectedArt: number = 10001
   @Input() selectedServ: number = 20002
+  @Input() lines: InvoiceLine[]
 
   constructor() { }
 
@@ -67,9 +70,10 @@ export class OutputPdfComponent implements OnInit {
     this.pos = this.pos + 1
     if (this.service) {
       const newLine = {
-        position: this.pos,
+        id: this.pos,
         number: this.service.id,
         serviceName: this.service.name,
+        serviceNote: this.note,
         employee: this.employee,
         servicePrice: this.service.price,
         amount: this.amount
@@ -88,9 +92,11 @@ export class OutputPdfComponent implements OnInit {
 
     if (this.article) {
       const newLine = {
+        id: this.pos,
         number: this.article.id,
-        position: this.pos,
         serviceName: this.article.name,
+        serviceNote: this.note,
+        employee: this.employee,
         servicePrice: this.article.price,
         amount: this.amount
       }

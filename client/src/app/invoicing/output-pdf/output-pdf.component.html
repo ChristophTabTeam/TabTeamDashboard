@@ -48,17 +48,25 @@
 
 <main>
   <h2>Rechnung #900001</h2>
-  <table>
-    <tr>
-      <th>Pos.</th>
-      <th>Art. Nr.</th>
-      <th>Leistung</th>
-      <th *ngIf="employee">Bearbeiter</th>
-      <th>Satz</th>
-      <th>Anzahl</th>
-      <th>Preis</th>
+  <table class="output__table">
+    <tr class="output__table-row">
+      <th class="output__table-head">Pos.</th>
+      <th class="output__table-head">Art. Nr.</th>
+      <th class="output__table-head">Leistung</th>
+      <th class="output__table-head" *ngIf="employee">Bearbeiter</th>
+      <th class="output__table-head">Satz</th>
+      <th class="output__table-head">Anzahl</th>
+      <th class="output__table-head">Preis</th>
     </tr>
-
+    <tr *ngFor="let line of lines">
+      <td class="output__table-data"> {{line.id}} </td>
+      <td class="output__table-data"> {{line.number}} </td>
+      <td class="output__table-data"> {{line.serviceName}} <br/> {{line.serviceNote}} </td>
+      <td class="output__table-data"> {{line.employee}} </td>
+      <td class="output__table-data"> {{line.servicePrice | currency}} </td>
+      <td class="output__table-data"> {{line.amount}} </td>
+      <td class="output__table-data"> {{line.servicePrice | currency}} </td>
+    </tr>
   </table>
 </main>
 
