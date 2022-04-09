@@ -3,6 +3,7 @@ import { Article, articles } from 'src/app/modules/articles';
 import { Service, services } from 'src/app/modules/services';
 import { Customer, customers } from 'src/app/modules/customers';
 import { InvoiceLine } from 'src/app/modules/invoiceLine';
+import { InvoiceService } from 'src/app/services/invoice.service';
 
 @Component({
   selector: 'app-output-pdf',
@@ -38,9 +39,11 @@ export class OutputPdfComponent implements OnInit {
   @Input() selectedCust: number
   @Input() articleArray?: Article
   @Input() serviceArray?: Service
-  @Input() lines: InvoiceLine[]
+  @Input() lines: any
 
-  constructor() { }
+  constructor(
+    private invoiceService: InvoiceService,
+  ) { }
 
   ngOnInit(): void {
     this.setDate()
@@ -80,8 +83,8 @@ export class OutputPdfComponent implements OnInit {
         amount: this.amount,
         linePrice: this.serviceArray.price * this.amount
       }
-
       this.onAddService.emit(newLine)
+      this.invoiceService.addLine(newLine)
     }
   }
 
@@ -103,6 +106,7 @@ export class OutputPdfComponent implements OnInit {
         linePrice: this.articleArray.price * this.amount
       }
       this.onAddArticle.emit(newLine)
+      this.invoiceService.addLine(newLine)
     }
   }
 

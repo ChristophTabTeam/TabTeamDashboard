@@ -14,8 +14,11 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class InvoiceService {
-  private apiUrl = 'http://localhost:5000/invLines'
+  private getUrl = 'http://localhost:4201/getInvoice'
+  private postUrl = 'http://localhost:4201/postInvoice'
+  private deleteUrl = 'http://localhost:4201/deleteInvoice'
 
   linePrice: number
   nettoSum: number = 0
@@ -32,20 +35,18 @@ export class InvoiceService {
     return services
   }
 
+  getLines(lines: InvoiceLine):Observable<any> {
+    return this.http.get(this.getUrl)
+  }
+
   addLine(line: InvoiceLine): Observable<InvoiceLine> {
     this.linePrice = line.servicePrice * line.amount
     this.nettoSum = this.nettoSum + this.linePrice
-    return this.http.post<InvoiceLine>(this.apiUrl, line, httpOptions)
-  }
-
-
-
-  getLines(): Observable<InvoiceLine[]> {
-    return this.http.get<InvoiceLine[]>(this.apiUrl)
+    return this.http.post<InvoiceLine>(this.postUrl, line, httpOptions)
   }
 
   deleteLine(line: InvoiceLine): Observable<InvoiceLine> {
-    const url = `${this.apiUrl}/${line.id}`
+    const url = `${this.deleteUrl}/${line.id}`
     return this.http.delete<InvoiceLine>(url)
   }
 }

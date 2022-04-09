@@ -16,6 +16,17 @@ import { TicketsComponent } from './tickets/tickets.component';
 import { OutputPdfComponent } from './invoicing/output-pdf/output-pdf.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { TopmenuComponent } from './topmenu/topmenu.component';
+import { TimetrackComponent } from './topmenu/components/timetrack/timetrack.component';
+import { SearchComponent } from './topmenu/components/search/search.component';
+import { ProfileComponent } from './topmenu/components/profile/profile.component';
+import { NotificationComponent } from './topmenu/components/notification/notification.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input'
+import { MatSelectModule } from '@angular/material/select'
+import { MatButtonModule } from '@angular/material/button'
+import { MatCheckboxModule } from '@angular/material/checkbox'
+import { MatChipsModule } from '@angular/material/chips'
 
 @NgModule({
   declarations: [
@@ -28,6 +39,11 @@ import { HttpClientModule } from '@angular/common/http';
     SettingsComponent,
     TicketsComponent,
     OutputPdfComponent,
+    TopmenuComponent,
+    TimetrackComponent,
+    SearchComponent,
+    ProfileComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +53,11 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatChipsModule,
     RouterModule.forRoot([
       { path: '', component: DashboardComponent },
       { path: 'tasks', component: TasksComponent },
@@ -45,7 +66,8 @@ import { HttpClientModule } from '@angular/common/http';
       { path: 'invoicing', component: InvoicingComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'preview' , component: OutputPdfComponent},
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

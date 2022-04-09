@@ -1,0 +1,24 @@
+{
+    "invoices": [
+        {
+            "id": 12,
+            "number": 20001,
+            "serviceName": "Gesellschafter Stundensatz",
+            "serviceNote": "Test Line",
+            "employee": "Christoph Labestin",
+            "servicePrice": 90,
+            "amount": 1.3,
+            "linePrice": 117
+        },
+        {
+            "id": 13,
+            "number": 20001,
+            "serviceName": "Gesellschafter Stundensatz",
+            "serviceNote": "Test Line",
+            "employee": "Christoph Labestin",
+            "servicePrice": 90,
+            "amount": 1.3,
+            "linePrice": 117
+        }
+    ]
+}
