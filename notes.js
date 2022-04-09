@@ -1,0 +1,1 @@
+// INSERT INTO users (acc_id, acc_name) VALUES ('"+accId+"', '"+accName+"')
