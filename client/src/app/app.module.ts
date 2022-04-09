@@ -8,12 +8,10 @@ import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
-import { InvoicingComponent } from './invoicing/invoicing.component';
-import { TasksComponent } from './tasks/tasks.component';
-import { ProjectsComponent } from './projects/projects.component';
+import { InvoicingComponent } from './teams/accounting/invoicing/invoicing.component';
+import { TasksComponent } from './users/tasks/tasks.component';
 import { SettingsComponent } from './settings/settings.component';
-import { TicketsComponent } from './tickets/tickets.component';
-import { OutputPdfComponent } from './invoicing/output-pdf/output-pdf.component';
+import { OutputPdfComponent } from './teams/accounting/invoicing/output-pdf/output-pdf.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { TopmenuComponent } from './topmenu/topmenu.component';
@@ -26,7 +24,12 @@ import { MatInputModule } from '@angular/material/input'
 import { MatSelectModule } from '@angular/material/select'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCheckboxModule } from '@angular/material/checkbox'
-import { MatChipsModule } from '@angular/material/chips'
+import { MatChipsModule } from '@angular/material/chips';
+import { ProjectsComponent } from './projects/projects.component';
+import { TicketsComponent } from './tickets/tickets.component';
+import { CalendarComponent } from './users/calendar/calendar.component';
+import { RedactionPlanComponent } from './teams/marketing/redaction-plan/redaction-plan.component';
+import { PostPlanerComponent } from './teams/marketing/post-planer/post-planer.component'
 
 @NgModule({
   declarations: [
@@ -35,15 +38,18 @@ import { MatChipsModule } from '@angular/material/chips'
     DashboardComponent,
     InvoicingComponent,
     TasksComponent,
-    ProjectsComponent,
     SettingsComponent,
-    TicketsComponent,
     OutputPdfComponent,
     TopmenuComponent,
     TimetrackComponent,
     SearchComponent,
     ProfileComponent,
     NotificationComponent,
+    ProjectsComponent,
+    TicketsComponent,
+    CalendarComponent,
+    RedactionPlanComponent,
+    PostPlanerComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,12 +66,14 @@ import { MatChipsModule } from '@angular/material/chips'
     MatChipsModule,
     RouterModule.forRoot([
       { path: '', component: DashboardComponent },
-      { path: 'tasks', component: TasksComponent },
-      { path: 'projects', component: ProjectsComponent },
-      { path: 'tickets', component: TicketsComponent },
       { path: 'invoicing', component: InvoicingComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'preview' , component: OutputPdfComponent},
+      { path: 'projects' , component: ProjectsComponent},
+      { path: 'teams/marketing/redaction-plan' , component: RedactionPlanComponent},
+      { path: 'teams/marketing/post-planer' , component: PostPlanerComponent},
+      { path: 'users/tasks', component: TasksComponent },
+      { path: 'users/calendar' , component: CalendarComponent},
     ]),
     BrowserAnimationsModule
   ],

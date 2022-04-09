@@ -2,20 +2,38 @@
 
 .navigation {
   height: 100vh;
-  width: max-content;
+  width: 40%;
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   background: $background-color;
   z-index: 1;
+  transition-duration: $animation-speed;
+}
+
+.navigation.active {
+  width: max-content;
+  transition-duration: $animation-speed;
+}
+
+.nav__select-form {
+  font-size: 1.2em;
+  color: $font-color;
 }
 
 .nav__list {
-  font-size: 1.5em;
+  font-size: 1.2em;
   display: flex;
   flex-direction: column;
   gap: 1em;
-  color: white;
+  color: $font-color ;
+}
+
+.nav__select {
+  color: $font-color;
+  font-size: 1.2em;
 }
 
 .nav__list-item {

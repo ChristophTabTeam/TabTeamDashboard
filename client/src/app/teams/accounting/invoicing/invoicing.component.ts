@@ -1,11 +1,11 @@
-import { customers, Customer } from './../modules/customers';
-import { employees } from './../modules/employees';
+import { customers, Customer } from '../../../modules/customers';
+import { employees } from '../../../modules/employees';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Article, articles } from '../modules/articles'
-import { Service, services } from '../modules/services';
+import { Article, articles } from '../../../modules/articles'
+import { Service, services } from '../../../modules/services';
 import { OutputPdfComponent } from './output-pdf/output-pdf.component';
-import { InvoiceLine } from '../modules/invoiceLine';
-import { InvoiceService } from '../services/invoice.service';
+import { InvoiceLine } from '../../../modules/invoiceLine';
+import { InvoiceService } from '../../../services/invoice.service';
 
 @Component({
   selector: 'app-invoicing',

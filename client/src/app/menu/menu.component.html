@@ -1,28 +1,79 @@
-<nav class="navigation">
-  <ul class="nav__list">
+<nav [ngClass]="navStatus ? 'navigation active' : 'navigation'" (mouseenter)="changeNav()" (mouseleave)="changeNav()">
+  <form [formGroup]="menu" class="nav__select-form">
+    <mat-label>Team auswählen
+      <mat-select formControlName="teamSelect" class="nav__select">
+        <mat-option value="buchhaltung">Buchhaltung</mat-option>
+        <mat-option value="design">Design</mat-option>
+        <mat-option value="develeopment">Development</mat-option>
+        <mat-option value="marketing">Marketing</mat-option>
+      </mat-select>
+    </mat-label>
+  </form>
+  <ul class="nav__list" *ngIf="menu.value.teamSelect === 'buchhaltung'">
+    <p>Abteilung</p>
     <li class="nav__list-item" routerLink='/'>
       <fa-icon [icon]="faChartLine" class="nav__list-item-icon"></fa-icon>
       <span class="nav__list-item-name">Dashboard</span>
-    </li>
-    <li class="nav__list-item" routerLink="/tasks">
-      <fa-icon [icon]="faListCheck" class="nav__list-item-icon"></fa-icon>
-      <span class="nav__list-item-name">Aufgaben</span>
     </li>
     <li class="nav__list-item" routerLink="/projects">
       <fa-icon [icon]="faDiagramProject" class="nav__list-item-icon"></fa-icon>
       <span class="nav__list-item-name">Projekte</span>
     </li>
-    <li class="nav__list-item" routerLink="/tickets">
-      <fa-icon [icon]="faTicket" class="nav__list-item-icon"></fa-icon>
-      <span class="nav__list-item-name">Tickets</span>
-    </li>
-    <li class="nav__list-item" routerLink="/invoicing">
+    <li class="nav__list-item" routerLink="/teams/accounting/invoicing">
       <fa-icon [icon]="faFileInvoiceDollar" class="nav__list-item-icon"></fa-icon>
       <span class="nav__list-item-name">Rechnungen</span>
     </li>
-    <li class="nav__list-item" routerLink="/settings">
-      <fa-icon [icon]="faGear" class="nav__list-item-icon"></fa-icon>
-      <span class="nav__list-item-name">Einstellungen</span>
+  </ul>
+  <ul class="nav__list" *ngIf="menu.value.teamSelect === 'design'">
+    <p>Abteilung</p>
+    <li class="nav__list-item" routerLink='/'>
+      <fa-icon [icon]="faChartLine" class="nav__list-item-icon"></fa-icon>
+      <span class="nav__list-item-name">Dashboard</span>
+    </li>
+    <li class="nav__list-item" routerLink="/projects">
+      <fa-icon [icon]="faDiagramProject" class="nav__list-item-icon"></fa-icon>
+      <span class="nav__list-item-name">Projekte</span>
+    </li>
+  </ul>
+  <ul class="nav__list" *ngIf="menu.value.teamSelect === 'development'">
+    <p>Abteilung</p>
+    <li class="nav__list-item" routerLink='/'>
+      <fa-icon [icon]="faChartLine" class="nav__list-item-icon"></fa-icon>
+      <span class="nav__list-item-name">Dashboard</span>
+    </li>
+    <li class="nav__list-item" routerLink="/projects">
+      <fa-icon [icon]="faDiagramProject" class="nav__list-item-icon"></fa-icon>
+      <span class="nav__list-item-name">Projekte</span>
+    </li>
+  </ul>
+  <ul class="nav__list" *ngIf="menu.value.teamSelect === 'marketing'">
+    <p>Abteilung</p>
+    <li class="nav__list-item" routerLink='/'>
+      <fa-icon [icon]="faChartLine" class="nav__list-item-icon"></fa-icon>
+      <span class="nav__list-item-name">Dashboard</span>
+    </li>
+    <li class="nav__list-item" routerLink="/projects">
+      <fa-icon [icon]="faDiagramProject" class="nav__list-item-icon"></fa-icon>
+      <span class="nav__list-item-name">Projekte</span>
+    </li>
+    <li class="nav__list-item" routerLink="/teams/marketing/redaction-plan">
+      <fa-icon [icon]="faCalendarPlus" class="nav__list-item-icon"></fa-icon>
+      <span class="nav__list-item-name">Redaktionsplan</span>
+    </li>
+    <li class="nav__list-item" routerLink="/teams/marketing/post-planer">
+      <fa-icon [icon]="faCalendarCheck" class="nav__list-item-icon"></fa-icon>
+      <span class="nav__list-item-name">Beitragsplaner</span>
+    </li>
+  </ul>
+  <ul class="nav__list">
+    <p>Persönlich</p>
+    <li class="nav__list-item" routerLink="/users/calendar">
+      <fa-icon [icon]="faListCheck" class="nav__list-item-icon"></fa-icon>
+      <span class="nav__list-item-name">Kalender</span>
+    </li>
+    <li class="nav__list-item" routerLink="/users/tasks">
+      <fa-icon [icon]="faListCheck" class="nav__list-item-icon"></fa-icon>
+      <span class="nav__list-item-name">Aufgaben</span>
     </li>
   </ul>
 </nav>
