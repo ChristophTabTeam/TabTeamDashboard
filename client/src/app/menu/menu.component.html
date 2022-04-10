@@ -1,8 +1,12 @@
-<nav [ngClass]="navStatus ? 'navigation active' : 'navigation'" (mouseenter)="changeNav()" (mouseleave)="changeNav()">
+<div class="placeholder"></div>
+
+<nav class="navigation active" (mouseenter)="changeNav()" (mouseleave)="changeNav()">
   <form [formGroup]="menu" class="nav__select-form">
     <mat-label>Team auswählen
       <mat-select formControlName="teamSelect" class="nav__select">
-        <mat-option value="buchhaltung">Buchhaltung</mat-option>
+        <mat-option value="buchhaltung">
+          Buchhaltung
+        </mat-option>
         <mat-option value="design">Design</mat-option>
         <mat-option value="develeopment">Development</mat-option>
         <mat-option value="marketing">Marketing</mat-option>
