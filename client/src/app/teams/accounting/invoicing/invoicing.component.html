@@ -3,8 +3,78 @@
 
 <div class="invoicing-form-and-preview">
   <div class="invoice__forms">
-    
-    <div class="invoice__form four overflowy-auto">
+    <form class="invoice_form one" (ngSubmit)="selectCust()">
+      <h2>Kunde</h2>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label class="form-label">Kunde wählen</mat-label>
+        <mat-select [formControl]="customer" class="form-select">
+          <mat-option *ngFor="let cust of customers" [value]="cust.id">{{cust.id}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button class="form-button green-button" type="submit">Hinzufügen</button>
+
+    </form>
+    <form class="invoice_form two">
+      <h2>Artikel oder Dienstleistung</h2>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label class="form-label">Art wählen</mat-label>
+        <mat-select [formControl]="artOrServ" class="form-select">
+          <mat-option value="art">Artikel</mat-option>
+          <mat-option value="serv">Dienstleistung</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+    <form class="invoice_form three" [formGroup]="serviceForm" *ngIf="artOrServ.value === 'serv'" >
+      <h2>Dienstleistung hinzufügen</h2>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label class="form-label">Dienstleistung</mat-label>
+        <mat-select formControlName="servNumb" class="form-select" (valueChange)="onServChange()">
+          <mat-option *ngFor="let serv of services" [value]="serv.id">
+            {{serv.id}} {{serv.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      {{choosenServ}}
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label class="form-label">Anzahl</mat-label>
+        <input matInput type="number" class="form-input">
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label class="form-label">Bearbeiter</mat-label>
+        <mat-select formControlName="employee" class="form-select">
+          <mat-option *ngFor="let emp of employees" [value]="emp.name">
+            {{emp.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>Notiz anhängen</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+      <button mat-raised-button class="form-button green-button" type="submit">Hinzufügen</button>
+    </form>
+    <form class="invoice_form three" [formGroup]="serviceForm" *ngIf="artOrServ.value === 'art'" >
+      <h2>Artikel hinzufügen</h2>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label class="form-label">Artikel</mat-label>
+        <mat-select formControlName="servNumb" class="form-select" (valueChange)="onServChange()">
+          <mat-option *ngFor="let art of articles" [value]="art.id">
+            {{art.id}} {{art.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      {{choosenServ}}
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label class="form-label">Anzahl</mat-label>
+        <input matInput type="number" class="form-input">
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>Notiz anhängen</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+      <button mat-raised-button class="form-button" type="submit">Hinzufügen</button>
+    </form>
+    <div class="invoice_form four overflowy-auto">
       <h2 class="invoice__headlines">Aktive Positionen</h2>
       <table *ngIf="lines" class="invoice__table">
         <tr>
@@ -26,6 +96,11 @@
   </div>
 
   <div class="preview">
-    <app-output-pdf #outputRef></app-output-pdf>
+    <app-output-pdf
+      #outputRef
+      [selectedCust]="selectedCust"
+      [employee]="serviceForm.value.employee"
+      [lines]="lines"
+    ></app-output-pdf>
   </div>
 </div>

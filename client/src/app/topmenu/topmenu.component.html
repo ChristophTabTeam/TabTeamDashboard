@@ -1,20 +1,37 @@
 <nav class="top-menu">
   <h1 class="top-menu__headline"> {{title}} </h1>
   <ul class="top-menu__right-list">
-    <li class="top-menu__right-list-item">
+    <li class="top-menu__right-list-item" (click)="setMenu(menus.search)">
       <fa-icon [icon]="faMagnifyingGlass" class="top-menu__right-icon"></fa-icon>
     </li>
-    <li class="top-menu__right-list-item">
+    <li class="top-menu__right-list-item" (click)="setMenu(menus.notifications)">
       <fa-icon [icon]="faBell" class="top-menu__right-icon"></fa-icon>
     </li>
-    <li class="top-menu__right-list-item">
+    <li class="top-menu__right-list-item" (click)="setMenu(menus.timetrack)">
       <fa-icon [icon]="faStopwatch" class="top-menu__right-icon"></fa-icon>
     </li>
-    <li class="top-menu__right-list-item">
+    <li class="top-menu__right-list-item" (click)="setMenu(menus.bookmarks)">
       <fa-icon [icon]="faBookmark" class="top-menu__right-icon"></fa-icon>
     </li>
-    <li class="top-menu__right-list-item">
+    <li class="top-menu__right-list-item" (click)="setMenu(menus.profile)">
       <div class="top-menu__profile-placeholder"></div>
     </li>
   </ul>
 </nav>
+
+<div class="menu-active-background" *ngIf="menuActive" (click)="closeMenu()"></div>
+
+<div class="right-menu" *ngIf="menuActive">
+  <div class="in-menu-nav">
+    <span (click)="setMenu(menus.search)" [ngClass]="(activeMenu === 'search') ? 'in-menu-nav-name active' : 'in-menu-nav-name'"><fa-icon [icon]="faMagnifyingGlass"></fa-icon> Suche</span>
+    <span (click)="setMenu(menus.notifications)" [ngClass]="(activeMenu === 'notifications') ? 'in-menu-nav-name active' : 'in-menu-nav-name'"><fa-icon [icon]="faBell"></fa-icon> Benachrichtigungen</span>
+    <span (click)="setMenu(menus.timetrack)" [ngClass]="(activeMenu === 'timetrack') ? 'in-menu-nav-name active' : 'in-menu-nav-name'"><fa-icon [icon]="faStopwatch"></fa-icon> Zeiterfassung</span>
+    <span (click)="setMenu(menus.bookmarks)" [ngClass]="(activeMenu === 'bookmarks') ? 'in-menu-nav-name active' : 'in-menu-nav-name'"><fa-icon [icon]="faBookmark"></fa-icon> Gespeichert</span>
+    <span (click)="closeMenu()" class="in-menu-nav-name"><fa-icon [icon]="faX"></fa-icon></span>
+  </div>
+  <app-search *ngIf="activeMenu === 'search'"></app-search>
+  <app-notification *ngIf="activeMenu === 'notifications'"></app-notification>
+  <app-timetrack *ngIf="activeMenu === 'timetrack'"></app-timetrack>
+  <app-bookmarks *ngIf="activeMenu === 'bookmarks'"></app-bookmarks>
+  <app-profile *ngIf="activeMenu === 'profile'"></app-profile>
+</div>

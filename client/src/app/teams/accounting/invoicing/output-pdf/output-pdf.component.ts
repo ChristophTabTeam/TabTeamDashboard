@@ -110,8 +110,8 @@ export class OutputPdfComponent implements OnInit {
     }
   }
 
-  selectCustomer() {
-    this.customer = customers.find(customer => customer.id == this.selectedCust)
+  selectCustomer(elem: number) {
+    this.customer = this.customers.find(customer => customer.id == elem)
     console.log(this.customer)
   }
 }

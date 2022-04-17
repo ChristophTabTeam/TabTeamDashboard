@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
+  selector: 'app-bookmarks',
+  templateUrl: './bookmarks.component.html',
   styleUrls: ['../components.scss']
 })
-export class SearchComponent implements OnInit {
+export class BookmarksComponent implements OnInit {
 
   constructor() { }
 

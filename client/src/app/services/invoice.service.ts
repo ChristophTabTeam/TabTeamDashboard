@@ -39,10 +39,8 @@ export class InvoiceService {
     return this.http.get(this.getUrl)
   }
 
-  addLine(line: InvoiceLine): Observable<InvoiceLine> {
-    this.linePrice = line.servicePrice * line.amount
-    this.nettoSum = this.nettoSum + this.linePrice
-    return this.http.post<InvoiceLine>(this.postUrl, line, httpOptions)
+  addLine(line: InvoiceLine) {
+    this.http.post<InvoiceLine>(this.postUrl, line, httpOptions)
   }
 
   deleteLine(line: InvoiceLine): Observable<InvoiceLine> {

@@ -1,14 +1,13 @@
 const fs = require('fs')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const path = require('path')
 
 const jsonParser = bodyParser.json()
 
 module.exports = (app) => {
     app.get('/getInvoice', cors(), (req, res) => {
-        fs.readFile(__dirname + '/' + 'invoices.json', 'utf-8', (err, data) => {
-            res.end(data)
-        })
+        res.sendFile(path.resolve(__dirname, '../', 'invoices.json'))
     })
     
     app.post('/postInvoice', cors(), jsonParser, (req, res) => {

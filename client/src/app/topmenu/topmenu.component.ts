@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faArrowRightToBracket, faBell, faBookmark, faMagnifyingGlass, faStopwatch } from '@fortawesome/free-solid-svg-icons'
+import { faBell, faBookmark, faMagnifyingGlass, faStopwatch, faX } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-topmenu',
@@ -12,10 +12,29 @@ export class TopmenuComponent implements OnInit {
   faStopwatch = faStopwatch
   faMagnifyingGlass = faMagnifyingGlass
   faBookmark = faBookmark
+  faX = faX
+
+  menuActive: boolean = false
+  activeMenu: string
+  menus = {
+    search: 'search',
+    notifications: 'notifications',
+    timetrack: 'timetrack',
+    bookmarks: 'bookmarks',
+    profile: 'profile'
+  }
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  setMenu(elem: string) {
+    this.menuActive = true
+    this.activeMenu = elem
+  }
+
+  closeMenu() {
+    this.menuActive = false
+  }
 }
