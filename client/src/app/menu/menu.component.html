@@ -1,83 +1,56 @@
 <div class="placeholder"></div>
 
-<nav class="navigation active" (mouseenter)="changeNav()" (mouseleave)="changeNav()">
-  <form [formGroup]="menu" class="nav__select-form">
-    <mat-label>Team auswählen
-      <mat-select formControlName="teamSelect" class="nav__select">
-        <mat-option value="buchhaltung">
-          Buchhaltung
-        </mat-option>
-        <mat-option value="design">Design</mat-option>
-        <mat-option value="develeopment">Development</mat-option>
-        <mat-option value="marketing">Marketing</mat-option>
-      </mat-select>
-    </mat-label>
-  </form>
-  <ul class="nav__list" *ngIf="menu.value.teamSelect === 'buchhaltung'">
-    <p>Abteilung</p>
-    <li class="nav__list-item" routerLink='/'>
-      <fa-icon [icon]="faChartLine" class="nav__list-item-icon"></fa-icon>
-      <span class="nav__list-item-name">Dashboard</span>
-    </li>
-    <li class="nav__list-item" routerLink="/projects">
-      <fa-icon [icon]="faDiagramProject" class="nav__list-item-icon"></fa-icon>
-      <span class="nav__list-item-name">Projekte</span>
-    </li>
-    <li class="nav__list-item" routerLink="/teams/accounting/invoicing">
-      <fa-icon [icon]="faFileInvoiceDollar" class="nav__list-item-icon"></fa-icon>
-      <span class="nav__list-item-name">Rechnungen</span>
-    </li>
-  </ul>
-  <ul class="nav__list" *ngIf="menu.value.teamSelect === 'design'">
-    <p>Abteilung</p>
-    <li class="nav__list-item" routerLink='/'>
-      <fa-icon [icon]="faChartLine" class="nav__list-item-icon"></fa-icon>
-      <span class="nav__list-item-name">Dashboard</span>
-    </li>
-    <li class="nav__list-item" routerLink="/projects">
-      <fa-icon [icon]="faDiagramProject" class="nav__list-item-icon"></fa-icon>
-      <span class="nav__list-item-name">Projekte</span>
-    </li>
-  </ul>
-  <ul class="nav__list" *ngIf="menu.value.teamSelect === 'development'">
-    <p>Abteilung</p>
-    <li class="nav__list-item" routerLink='/'>
-      <fa-icon [icon]="faChartLine" class="nav__list-item-icon"></fa-icon>
-      <span class="nav__list-item-name">Dashboard</span>
-    </li>
-    <li class="nav__list-item" routerLink="/projects">
-      <fa-icon [icon]="faDiagramProject" class="nav__list-item-icon"></fa-icon>
-      <span class="nav__list-item-name">Projekte</span>
-    </li>
-  </ul>
-  <ul class="nav__list" *ngIf="menu.value.teamSelect === 'marketing'">
-    <p>Abteilung</p>
-    <li class="nav__list-item" routerLink='/'>
-      <fa-icon [icon]="faChartLine" class="nav__list-item-icon"></fa-icon>
-      <span class="nav__list-item-name">Dashboard</span>
-    </li>
-    <li class="nav__list-item" routerLink="/projects">
-      <fa-icon [icon]="faDiagramProject" class="nav__list-item-icon"></fa-icon>
-      <span class="nav__list-item-name">Projekte</span>
-    </li>
-    <li class="nav__list-item" routerLink="/teams/marketing/redaction-plan">
-      <fa-icon [icon]="faCalendarPlus" class="nav__list-item-icon"></fa-icon>
-      <span class="nav__list-item-name">Redaktionsplan</span>
-    </li>
-    <li class="nav__list-item" routerLink="/teams/marketing/post-planer">
-      <fa-icon [icon]="faCalendarCheck" class="nav__list-item-icon"></fa-icon>
-      <span class="nav__list-item-name">Beitragsplaner</span>
-    </li>
-  </ul>
-  <ul class="nav__list">
-    <p>Persönlich</p>
-    <li class="nav__list-item" routerLink="/users/calendar">
-      <fa-icon [icon]="faListCheck" class="nav__list-item-icon"></fa-icon>
-      <span class="nav__list-item-name">Kalender</span>
-    </li>
-    <li class="nav__list-item" routerLink="/users/tasks">
-      <fa-icon [icon]="faListCheck" class="nav__list-item-icon"></fa-icon>
-      <span class="nav__list-item-name">Aufgaben</span>
-    </li>
-  </ul>
+<nav
+  [ngClass]="navStatus ? 'navigation active noselect' : 'navigation noselect'"
+  (mouseenter)="changeNav()"
+  (mouseleave)="changeNav()"
+>
+  <div class="menu-section one"></div>
+  <div class="menu-section two">
+    <p class="menu-section-headline">
+      <fa-icon [icon]="faPeopleGroup"></fa-icon>
+      <span class="section-name">Team</span>
+    </p>
+    <ul class="menu-list">
+      <li class="menu-list-item" routerLink="/">
+        <fa-icon [icon]="faChartLine"></fa-icon>
+        <span class="menu-item-name">Dashboard</span>
+      </li>
+      <li class="menu-list-item" routerLink="/projects">
+        <fa-icon [icon]="faDiagramProject"></fa-icon>
+        <span class="menu-item-name">Projekte</span>
+      </li>
+      <li class="menu-list-item" routerLink="/tickets">
+        <fa-icon [icon]="faTicket"></fa-icon>
+        <span class="menu-item-name">Tickets</span>
+      </li>
+    </ul>
+  </div>
+  <div class="menu-section three">
+    <p class="menu-section-headline">
+      <fa-icon [icon]="faUser"></fa-icon>
+      <span class="section-name">Persönlich</span>
+    </p>
+    <ul class="menu-list">
+      <li class="menu-list-item" routerLink="/user/calendar">
+        <fa-icon [icon]="faCalendar"></fa-icon>
+        <span class="menu-item-name">Kalender</span>
+      </li>
+      <li class="menu-list-item" routerLink="/user/tasks">
+        <fa-icon [icon]="faListCheck"></fa-icon>
+        <span class="menu-item-name">Aufgaben</span>
+      </li>
+      <a href="https://docs.tabteam.media" class="menu-hyperlink">
+        <li class="menu-list-item">
+          <fa-icon [icon]="faBook"></fa-icon>
+          <span class="menu-item-name">Dokumentation</span>
+        </li>
+      </a>
+      <li class="menu-list-item">
+        <fa-icon [icon]="faGear"></fa-icon>
+        <span class="menu-item-name">Einstellungen</span>
+      </li>
+    </ul>
+  </div>
+  <div class="menu-section four"></div>
 </nav>

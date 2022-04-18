@@ -76,10 +76,11 @@ import { MatTabsModule } from '@angular/material/tabs'
       { path: 'settings', component: SettingsComponent },
       { path: 'preview' , component: OutputPdfComponent},
       { path: 'projects' , component: ProjectsComponent},
+      { path: 'tickets' , component: TicketsComponent},
       { path: 'teams/marketing/redaction-plan' , component: RedactionPlanComponent},
       { path: 'teams/marketing/post-planer' , component: PostPlanerComponent},
-      { path: 'users/tasks', component: TasksComponent },
-      { path: 'users/calendar' , component: CalendarComponent},
+      { path: 'user/tasks', component: TasksComponent },
+      { path: 'user/calendar' , component: CalendarComponent},
     ]),
     BrowserAnimationsModule
   ],

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { faCalendarCheck, faCalendarPlus, faChartLine, faDiagramProject, faFileInvoiceDollar, faGear, faListCheck, faTicket } from '@fortawesome/free-solid-svg-icons'
+import { faBook, faCalendar, faCalendarCheck, faCalendarPlus, faChartLine, faDiagramProject, faFileInvoiceDollar, faGear, faListCheck, faPeopleGroup, faTicket, faUser } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-menu',
@@ -21,7 +21,10 @@ export class MenuComponent implements OnInit {
   faGear = faGear
   faCalendarPlus = faCalendarPlus
   faCalendarCheck = faCalendarCheck
-
+  faCalendar = faCalendar
+  faUser = faUser
+  faPeopleGroup = faPeopleGroup
+  faBook = faBook
 
   navStatus: boolean = false
   teamSelect: string

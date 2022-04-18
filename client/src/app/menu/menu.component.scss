@@ -1,32 +1,93 @@
 @import '../../variables';
 
 .placeholder {
-  width: 40%;
-  height: 100%;
+  width: 3vw;
+  height: 100vh;
+  min-width: 50px;
 }
 
 .navigation {
   height: 100vh;
-  width: 5vw;
+  width: 3vw;
+  min-width: 50px;
+  max-width: 280px;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  display: grid;
+  grid-template-areas:
+  'one'
+  'two'
+  'two'
+  'three'
+  'three'
+  'four'
+  ;
+  grid-auto-rows: 1fr;
   background: $background-color;
   z-index: 1;
   transition-duration: $animation-speed;
   position: absolute;
+  top: 0;
+  color: $font-color;
+  overflow: hidden;
 }
 
 .navigation.active {
-  width: max-content;
+  width: 15vw;
   transition-duration: $animation-speed;
+  max-width: 280px;
 }
 
-.nav__select-form {
-  font-size: 1.2em;
+.navigation.active::backdrop {
+  background: rgb(0, 0, 0 / .5);
+  width: 100vw;
+  height: 100vh;
+}
+
+.menu-formfield {
+  background-color: white;
+}
+
+.menu-section-headline {
+  position: relative;
+  text-align: center;
+  width: 3vw;
+  font-size: 1.3em;
+  color: $accent-color;
+}
+
+.section-name {
+  position: absolute;
+  left: 3vw;
+}
+
+.menu-list {
+  padding: 2em 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+}
+
+.menu-list-item {
+  position: relative;
+  text-align: center;
+  width: 3vw;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.menu-item-name {
+  position: absolute;
+  left: 3vw;
+}
+
+.menu-hyperlink {
   color: $font-color;
+  text-decoration: none;
+}
+
+.menu-hyperlink:visited {
+  color: $font-color;
+  text-decoration: none;
 }
 
 .nav__list {
